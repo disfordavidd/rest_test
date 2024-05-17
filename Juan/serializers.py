@@ -5,4 +5,4 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lampara
         fields = ('id', 'nombre', 'precio', 'cantidad', 'fecha')
-        read_only_fields = ('fecha', )
+        #read_only_fields = ('fecha', )

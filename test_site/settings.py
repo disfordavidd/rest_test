@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'test_app',
     'rest_models',
     'rest_framework',
-    'Juan'
+    'Juan',
 ]
 
 MIDDLEWARE = [
