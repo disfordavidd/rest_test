@@ -49,7 +49,7 @@ urlpatterns = [
     path('', include("rest_models.urls")),
     path('', include("Juan.urls")),
     path("admin/", admin.site.urls),
-    path("lamparas/", lamparas),
+    path("lamparas/", lamparas, name='listalamparas'),
     path("lamparas/new/", lamparaNueva),
     path("lamparas/edit/", lamparaEditar),
 ]

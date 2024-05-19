@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.conf import settings
 from .models import Lampara
 from .forms import LamparaForm
@@ -19,10 +19,7 @@ def lamparas(request):
             res = requests.delete(settings.SITE_URL+request.POST["endpoint"])
 
             print(res)
-            lamparas = Lampara.objects.all()
-            return render(request, "lamparaslista.html", {
-                "lamparas": lamparas
-            })
+            return redirect('listalamparas')
         
 def lamparaNueva(request):
     if request.method == "GET":
@@ -32,10 +29,7 @@ def lamparaNueva(request):
     
     elif request.method == "POST":
         res = requests.post(settings.SITE_URL+"/api/lampara/", data=request.POST)
-        lamparas = Lampara.objects.all()
-        return render(request, "lamparaslista.html", {
-            "lamparas": lamparas
-        })
+        return redirect('listalamparas')
     
 def lamparaEditar(request):
     if request.method == "POST" and "_method" in request.POST:
@@ -44,10 +38,8 @@ def lamparaEditar(request):
             res = requests.put(settings.SITE_URL+request.POST["endpoint"], data=request.POST)
             print(res.status_code)
             print(res.content)
-            lamparas = Lampara.objects.all()
-            return render(request, "lamparaslista.html", {
-                "lamparas": lamparas
-            })
+            return redirect('listalamparas')
+
     elif request.method == "POST":
         res = requests.get(settings.SITE_URL+"/api/lampara/"+request.POST["lampara"])
         #print(res.json())
