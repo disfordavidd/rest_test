@@ -19,6 +19,7 @@ from django.urls import include, path
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
 from test_app import views
+from Juan.views import lamparas
 
 
 # Serializers define the API representation.
@@ -46,5 +47,6 @@ urlpatterns = [
     path('', include("rest_models.urls")),
     path('', include("Juan.urls")),
     path("admin/", admin.site.urls),
+    path("lamparas/", lamparas),
 ]
 
