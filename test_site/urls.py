@@ -21,6 +21,7 @@ from rest_framework import routers, serializers, viewsets
 from test_app import views
 from Juan.views import lamparas
 from Juan.views import lamparaNueva
+from Juan.views import lamparaEditar
 
 
 # Serializers define the API representation.
@@ -50,5 +51,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("lamparas/", lamparas),
     path("lamparas/new/", lamparaNueva),
+    path("lamparas/edit/", lamparaEditar),
 ]
 

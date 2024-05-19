@@ -19,9 +19,14 @@
             <p>Cantidad: {{ lampara.cantidad }} piezas</p>
             <p>Fecha: {{ lampara.fecha }}</p>
             <!--<form action="/api/lampara/{{ lampara.pk }}/" method="POST">-->
+            <form action="/lamparas/edit/" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="lampara" value="{{ lampara.pk }}">
+                <button>EDITAR</button>
+            </form>
             <form action="" method="POST">
                 {% csrf_token %}
-                <input type="hidden" name="endpoint" value="/api/lampara/{{ lampara.pk }}">
+                <input type="hidden" name="endpoint" value="/api/lampara/{{ lampara.pk }}/">
                 <input type="hidden" name="_method" value="DELETE">
                 <button>BORRAR</button>
             </form>
