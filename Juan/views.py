@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.conf import settings
 from .models import Lampara
+from .forms import LamparaForm
 
 import requests
 
@@ -12,14 +13,9 @@ def lamparas(request):
             "lamparas": lamparas
         })
     
-    if request.method == "POST":
+    elif request.method == "POST":
         if request.POST["_method"] == "DELETE":
             print("Eliminar elemento")
-            """request.method = "DELETE"
-            request.META['REQUEST_METHOD'] = 'DELETE'
-            request.DELETE = QueryDict(request.body)"""
-            #current_site = Site.objects.get_current()
-            #current_site.domain
             res = requests.delete(settings.SITE_URL+request.POST["endpoint"])
 
             print(res)
@@ -27,3 +23,16 @@ def lamparas(request):
             return render(request, "lamparaslista.html", {
                 "lamparas": lamparas
             })
+        
+def lamparaNueva(request):
+    if request.method == "GET":
+        return render(request, "nuevalampara.html", {
+            "form": LamparaForm
+        })
+    
+    elif request.method == "POST":
+        res = requests.post(settings.SITE_URL+"/api/lampara/", data=request.POST).json()
+        lamparas = Lampara.objects.all()
+        return render(request, "lamparaslista.html", {
+            "lamparas": lamparas
+        })
