@@ -1,9 +1,9 @@
 from rest_framework import routers
-from .api import ProjectViewSetLampara
+from .views import ProjectViewSetLampara
 
 routerl = routers.DefaultRouter()
 
-routerl.register('api/lampara', ProjectViewSetLampara, 'lamparas')
+routerl.register('lampara', ProjectViewSetLampara, 'lamparas')
 
 #urlpatterns = []
 
