@@ -1,13 +1,10 @@
 from django.shortcuts import render
 from David.models import Silla
 from David.serializers import SillaSerializer
-from rest_framework import generics
+from rest_framework import viewsets, permissions
 
 
-class silla_list(generics.ListCreateAPIView):
+class ProjectViewSetSilla(viewsets.ModelViewSet):
     queryset = Silla.objects.all()
-    serializer_class = SillaSerializer
-    
-class silla_detail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Silla.objects.all()
+    permission_classes = [permissions.AllowAny]
     serializer_class = SillaSerializer

@@ -18,8 +18,7 @@ db.sqlite3
 
 # Migrations
 **/migrations/**
-!/migrations
-!**/migrations/__init__.py
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

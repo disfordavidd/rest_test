@@ -3,6 +3,6 @@ from David.models import Silla
 
 class SillaSerializer(serializers.ModelSerializer):
     
-      class Meta:
+    class Meta:
         model = Silla
-        fields = ['precio', 'fecha', 'tipo', 'cantidad']
+        fields = '__all__'

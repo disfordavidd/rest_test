@@ -1,8 +1,11 @@
-from django.urls import path
-from David import views
+from django.urls import path, include
+from rest_framework import routers
+from David.views import ProjectViewSetSilla
 
+routerl = routers.DefaultRouter()
+
+routerl.register('sillas', ProjectViewSetSilla, 'sillas')
 
 urlpatterns = [
-    path('sillas/', views.silla_list.as_view()),
-    path('sillas/<int:pk>/', views.silla_detail.as_view()),
+    path('', include(routerl.urls)),
 ]
