@@ -1,7 +1,5 @@
 """
-Importamos path e include de django urls
-Importamos routers para configurar un router que organice las urls
-Importamos el viewset para asociarlo con la url /sillas
+URLs de la aplicación David
 """
 
 from django.urls import path, include

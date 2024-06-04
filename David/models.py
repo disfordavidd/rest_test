@@ -1,10 +1,12 @@
-"""Importar models de Django"""
+"""
+Modelos de la aplicación David
+"""
 
 from django.db import models
 
 class Silla(models.Model):
     """
-      Crear el modelo Silla
+      Definición del modelo Silla
 
     """
     precio = models.BigIntegerField()

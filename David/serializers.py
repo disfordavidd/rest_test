@@ -1,5 +1,5 @@
 """
-Importar el modelo Silla para serializarlo usando rest_framework serializers
+Serializadores de la aplicación David
 """
 
 from rest_framework import serializers
@@ -7,11 +7,11 @@ from David.models import Silla
 
 class SillaSerializer(serializers.ModelSerializer):
     """
-    Usamos el ModelSerializer de Rest Framework
+    Serializador del modelo silla
     """
     class Meta:
         """
-        Modificamos el ModelSerializer con el modelo Silla y serializamos todos sus campos
+        Clase meta
         """
         model = Silla
         fields = '__all__'
