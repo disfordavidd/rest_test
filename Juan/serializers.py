@@ -1,5 +1,5 @@
 """
-Serializers para el CRUD con REST_FRAMEWORK
+Serializers de la app Juan para el CRUD con REST_FRAMEWORK
 """
 
 from rest_framework import serializers

@@ -1,5 +1,5 @@
 """
-Modelos y ajustes para el panel de administración Django
+Modelos y ajustes para el panel de administración Django de la app Juan
 """
 
 from django.contrib import admin
