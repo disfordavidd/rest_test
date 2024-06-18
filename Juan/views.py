@@ -2,6 +2,7 @@
 Vistas de la app Juan
 """
 
+from django.shortcuts import render
 from rest_framework import viewsets, status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -24,5 +25,9 @@ class LamparasList(APIView):
     def get(self, request, *args, **kwargs):
         """GET method personalizado"""
         queryset = Lampara.objects.all()
-        serializer = ProjectSerializer(queryset, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        #serializer = ProjectSerializer(queryset, many=True)
+        #return Response(serializer.data, status=status.HTTP_200_OK)
+        return render(request, 'listarlamparas.html', {
+            'title' : "Listado",
+            'lamps' : queryset,
+        })

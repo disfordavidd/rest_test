@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <ul>
+    {% for lamp in lamps %}
+        <li>{{ lamp.nombre }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
