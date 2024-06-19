@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Lista de Sillas</h1>
+<ul>
+    {% for silla in sillas %}
+    <li>
+        <strong>Tipo:</strong> <a href="{% url 'silla-detail' silla.id %}">{{ silla.tipo }}</a><br>
+        <strong>Precio:</strong> {{ silla.precio }}
+
+        <form method="post" action="{% url 'silla-detail' silla.id %}" style="display:inline;">
+            {% csrf_token %}
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit">Borrar</button>
+        </form>
+
+    </li>
+    {% endfor %}
+</ul>
+    <h2>Crear Nueva Silla</h2>
+    <form method="post" action="{% url 'silla-list' %}">
+        {% csrf_token %}
+        Tipo: <input type="text" name="tipo" required><br>
+        Cantidad: <input type="text" name="cantidad" required><br>
+        Precio: <input type="number" name="precio" required><br>
+        <button type="submit">Crear Silla</button>
+    </form>
+    {% endblock %}

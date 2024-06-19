@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Sillas </title>
+    <!-- Bootstrap CSS from CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom styles from CDN (if applicable) -->
+    <link rel="stylesheet" href="https://example.com/css/styles.css">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    {% block scritps %}{% endblock %}
+    <!-- Bootstrap JS and Popper.js from CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom scripts from CDN (if applicable) -->
+    <script src="https://example.com/js/scripts.js"></script>
+</body>
+</html>
