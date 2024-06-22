@@ -13,5 +13,5 @@ routerl.register('lampara', ProjectViewSetLampara, 'lamparas')
 
 urlpatterns = [
     path('', include(routerl.urls)),
-    path('lamplist', LamparasList.as_view())
+    path('lamplist/', LamparasList.as_view(), name='lamplist'),
 ]

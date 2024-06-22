@@ -2,10 +2,10 @@
 Vistas de la app Juan
 """
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rest_framework import viewsets, status, permissions
 from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework import generics
 from .serializers import ProjectSerializer
 from .models import Lampara
 
@@ -17,16 +17,19 @@ class ProjectViewSetLampara(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
     serializer_class = ProjectSerializer
 
-class LamparasList(APIView):
-    """Vista para listar las lamparas"""
+    def post(self, request, pk):
+        """DELETE method personalizado"""
+        if request.POST["_method"] == "DELETE":
+            lamp = Lampara.objects.get(id=pk)
+            lamp.delete()
+        return redirect('lamplist')
 
+class LamparasList(generics.ListAPIView):
+    """Vista para listar las lamparas con el template listarlamparas.html"""
     permission_classes = [permissions.AllowAny]
-    
     def get(self, request, *args, **kwargs):
         """GET method personalizado"""
         queryset = Lampara.objects.all()
-        #serializer = ProjectSerializer(queryset, many=True)
-        #return Response(serializer.data, status=status.HTTP_200_OK)
         return render(request, 'listarlamparas.html', {
             'title' : "Listado",
             'lamps' : queryset,
