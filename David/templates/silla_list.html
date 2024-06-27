@@ -1,28 +1,54 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block title %}
 <h1>Lista de Sillas</h1>
-<ul>
-    {% for silla in sillas %}
-    <li>
-        <strong>Tipo:</strong> <a href="{% url 'silla-detail' silla.id %}">{{ silla.tipo }}</a><br>
-        <strong>Precio:</strong> {{ silla.precio }}
+{% endblock %}
 
-        <form method="post" action="{% url 'silla-detail' silla.id %}" style="display:inline;">
-            {% csrf_token %}
-            <input type="hidden" name="_method" value="delete">
-            <button type="submit">Borrar</button>
-        </form>
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Material</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for silla in sillas %}
+            <tr>
+                <th scope="row">{{silla.id}}</th>
+                <td><a href="{% url 'silla-detail' silla.id %}">{{silla.tipo}}</a></td>
+                <td>{{silla.precio}}</td>
+                <td>{{silla.cantidad}}</td>
+                <td>
+                    <form method="post" action="{% url 'silla-detail' silla.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="_method" value="delete">
+                        <button type="submit" class="btn btn-primary">Borrar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-    </li>
-    {% endfor %}
-</ul>
     <h2>Crear Nueva Silla</h2>
     <form method="post" action="{% url 'silla-list' %}">
         {% csrf_token %}
-        Tipo: <input type="text" name="tipo" required><br>
-        Cantidad: <input type="text" name="cantidad" required><br>
-        Precio: <input type="number" name="precio" required><br>
-        <button type="submit">Crear Silla</button>
+        <div class="mb-3">
+            <label for="tipo" class="form-label">Material</label>
+            <input type="text" name="tipo" id="tipo" required class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="cantidad" class="form-label">Cantidad</label>
+            <input type="text" name="cantidad" id="cantidad" required class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="precio" class="form-label">Precio</label>
+            <input type="number" name="precio" id="precio" required class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Crear Silla</button>
     </form>
-    {% endblock %}
+{% endblock %}
