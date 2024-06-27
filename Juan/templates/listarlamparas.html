@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container w-50 rounded p-4" style="background-color: rgb(217, 217, 217);">
+        <h3 class="card-title">Inventario de lamparas</h3>
+        <table class="table border border-3 border-dark" style="background-color: white;">
+            <thead>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for lamp in lamps %}
+                    <tr>
+                        <td scope="row">{{ lamp.nombre }}</td>
+                        <td>{{ lamp.precio }}</td>
+                        <td>
+                            <form method="POST" class="button-form" action="/lampara/{{ lamp.id }}/">
+                                <input type="hidden" name="_method" value="DELETE"/>
+                                <button class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+{% endblock %}
