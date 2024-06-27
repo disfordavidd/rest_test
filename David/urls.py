@@ -6,10 +6,12 @@ from django.urls import path, include
 from rest_framework import routers
 from David.views import ProjectViewSetSilla
 
-routerl = routers.DefaultRouter()
+router = routers.DefaultRouter()
 
-routerl.register('sillas', ProjectViewSetSilla, 'sillas')
+router.register(r'sillas', ProjectViewSetSilla, basename='silla')
+
 
 urlpatterns = [
-    path('', include(routerl.urls)),
+    path('api/', include((router.urls))),
+
 ]
