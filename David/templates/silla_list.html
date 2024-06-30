@@ -5,6 +5,15 @@
 {% endblock %}
 
 {% block content %}
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     <table class="table">
         <thead>
             <tr>
@@ -12,6 +21,8 @@
                 <th scope="col">Material</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Cantidad</th>
+                <th scope="col">Disponibilidad</th>
+                <th scope="col">Vistas</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
@@ -22,6 +33,8 @@
                 <td><a href="{% url 'silla-detail' silla.id %}">{{silla.tipo}}</a></td>
                 <td>{{silla.precio}}</td>
                 <td>{{silla.cantidad}}</td>
+                <td>{{silla.disponible}}</td>
+                <td>{{silla.contador_vistas}}</td>
                 <td>
                     <form method="post" action="{% url 'silla-detail' silla.id %}" style="display:inline;">
                         {% csrf_token %}
@@ -48,6 +61,10 @@
         <div class="mb-3">
             <label for="precio" class="form-label">Precio</label>
             <input type="number" name="precio" id="precio" required class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="disponible" class="form-label">Disponibilidad</label>
+            <input type="checkbox" name="disponible" id="disponibile">
         </div>
         <button type="submit" class="btn btn-primary">Crear Silla</button>
     </form>

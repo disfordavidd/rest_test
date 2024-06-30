@@ -6,10 +6,19 @@
 
 {% block content %}
 
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     <p>Material: {{ silla.tipo }}</p>
     <p>Precio: $ {{ silla.precio }}</p>
     <p>Cantidad: {{ silla.cantidad }}</p>
     <p>Fecha: {{ silla.fecha }}</p>
+    <p>Disponibilidad: {{ silla.disponible }}</p>
 
     <h2>Editar Silla</h2>
 <form method="post" action="{% url 'silla-detail' silla.id %}">
@@ -24,6 +33,9 @@
 
     <label for="cantidad" class="form-label">Cantidad:</label>
     <input type="number" id="cantidad" name="cantidad" value="{{ silla.cantidad }}" required class="form-control"><br>
+
+    <label for="disponible" class="form-label">Disponibilidad</label>
+    <input type="checkbox" name="disponible" id="disponibile"><br>
 
     <input type="hidden" id="fecha" name="fecha" value="{{ silla.fecha|date:'Y-m-d H:i:s' }}"><!-- Campo oculto para la fecha -->
 
