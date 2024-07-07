@@ -16,7 +16,8 @@ class ProjectViewSetSilla(viewsets.ModelViewSet):
     queryset = Silla.objects.all()
     permission_classes = [permissions.AllowAny]
     serializer_class = SillaSerializer
-    renderer_classes = [renderers.TemplateHTMLRenderer]
+    #renderer_classes = [renderers.TemplateHTMLRenderer]
+    renderer_classes = [renderers.JSONRenderer] #Usar JSON para los tests
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset().filter(disponible=True) #Mostrar solo las sillas disponibles
@@ -49,4 +50,5 @@ class ProjectViewSetSilla(viewsets.ModelViewSet):
         instance = self.get_object()
         self.perform_destroy(instance)
         messages.success(request, 'La silla se ha eliminado correctamente.') # Agregar mensaje flash
-        return redirect('silla-list')
+        #return redirect('silla-list')
+        return Response(status=status.HTTP_204_NO_CONTENT) #Para las pruebas
