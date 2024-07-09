@@ -30,7 +30,16 @@ class LamparasList(generics.ListAPIView):
     def get(self, request, *args, **kwargs):
         """GET method personalizado"""
         queryset = Lampara.objects.all()
+        global_stock = 0
+        global_price_items = 0
+        for item in queryset:
+            total_price_item = item.cantidad * item.precio
+            item.totalprice = total_price_item
+            global_stock += item.cantidad
+            global_price_items += total_price_item
         return render(request, 'listarlamparas.html', {
             'title' : "Listado",
             'lamps' : queryset,
+            'global_stock' : global_stock,
+            'global_price' : global_price_items
         })

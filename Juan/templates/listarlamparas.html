@@ -19,7 +19,7 @@
                         <td scope="row">{{ lamp.nombre }}</td>
                         <td>{{ lamp.cantidad }}</td>
                         <td>${{ lamp.precio }}</td>
-                        <td></td>
+                        <td>${{ lamp.totalprice }}</td>
                         <td>
                             <form method="POST" class="button-form" action="/lampara/{{ lamp.id }}/">
                                 <input type="hidden" name="_method" value="DELETE"/>
@@ -35,13 +35,13 @@
                 <thead>
                   <tr>
                     <th scope="col">Inventario total</th>
-                    <th scope="col">Capital global invertido</th>
+                    <th scope="col">Precio total inventario</th>
                   </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td scope="row"></td>
-                        <td></td>
+                        <td scope="row">{{ global_stock }} items</td>
+                        <td>${{ global_price }}</td>
                     </tr>
                 </tbody>
               </table>
